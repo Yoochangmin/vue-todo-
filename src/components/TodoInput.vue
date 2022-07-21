@@ -17,9 +17,14 @@ export default {
   },
   methods:{
     addTodo:function (){
-      //2. 저장 로직
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput()  //this 사용시 데이터 안에 있는 속성과 메소드안에 선언한 메소드도 접근 가능 같은 인스턴스를 가리키기에
+      if(this.newTodoItem !==''){
+        //객체 생성 -> 텍스트가 체크 되었는지 확인 하기 위해
+        let obj = {completed: false, item: this.newTodoItem}
+        //2. 저장 로직
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.clearInput()  //this 사용시 데이터 안에 있는 속성과 메소드안에 선언한 메소드도 접근 가능 같은 인스턴스를 가리키기에
+      }
+
     },
     //3.초기화
     clearInput:function (){
