@@ -18,10 +18,8 @@ export default {
   methods:{
     addTodo:function (){
       if(this.newTodoItem !==''){
-        //객체 생성 -> 텍스트가 체크 되었는지 확인 하기 위해
-        let obj = {completed: false, item: this.newTodoItem}
-        //2. 저장 로직
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        //상위 컴포넌트로 값 전달 $emit('이벤트 이름', 인자1, 인자2, ...)
+        this.$emit('addTodoItem',this.newTodoItem);
         this.clearInput()  //this 사용시 데이터 안에 있는 속성과 메소드안에 선언한 메소드도 접근 가능 같은 인스턴스를 가리키기에
       }
 

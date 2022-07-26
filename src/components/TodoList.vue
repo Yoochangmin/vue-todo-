@@ -3,7 +3,7 @@
   <ul>
     <!-- 텍스트값만 중복되지 않으면 v-bind:key가 유일하기에 속도 가속화   -->
     <!-- index를 넣으면 해당 리스트의 순서를 부여   -->
-    <li v-for= "(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+    <li v-for= "(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
         <font-awesome-icon  icon="fa-solid fa-check" class="checkBtn"
         v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem,index)"/>
     <!-- v-bind:class => 기존의 html속성에다가 동적인 값을 부여 true이면 속성 적용 false이면 속성적용 x    -->
@@ -20,39 +20,25 @@
 <script>
 export default {
   name: 'TodoList',
-  data: function (){
-    return{
-      todoItems:[]
-    }
-  },
+  //App.vue에 있는 todoItems의 데이터를 받아옴
+  props:['propsdata'],
+
   methods:{
-    //list 제거
+    //list 할일 제거
     removeTodo:function (todoItem, index){
-      console.log(todoItem,index)
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index,1);
+      // "removeItem"이라는 이벤트가 발생하면
+      // todoItem과 index 데이터를 상위 컴포넌트 App.vue로 보냄
+      this.$emit('removeItem',todoItem,index)
+
     },
-    // list 체크
-    toggleComplete: function (todoitem, index){
-      console.log(todoitem, index)
-      todoitem.completed = !todoitem.completed
-      //removeItem 하는 이유 : 설정값을 바꾸고 다시 저장할려면 지웟다가 다시 추가해야함. => 로컬 스토리지의 데이터 갱신
-      localStorage.removeItem(todoitem.item);
-      localStorage.setItem(todoitem.item, JSON.stringify(todoitem))
+    // list 할일 완료 기능
+    toggleComplete: function (todoItem, index){
+      console.log(todoItem, index)
+      this.$emit('toggleItem', todoItem)
+
     }
   },
-   // 생성된 리스트 목록 view
-  created: function (){
-    if(localStorage.length>0){
-      for(let i=0 ; i<localStorage.length; i++){
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          //JSON.stringify로 문자열로 저장되어있는 로컬스토리지의 value값을 가져온다음 그 값을 다시 객체로 변환시켜 todoitems에 삽입
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-          // this.todoItems.push(localStorage.key(i)) //로컬스토리지의 키값을 todoItems에 삽입
-        }
-      }
-    }
-  },
+
 
 
 }

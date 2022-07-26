@@ -14,7 +14,7 @@ export default {
   methods:{
     //list 목록 삭제
     clearTodo: function () {
-      localStorage.clear()
+      this.$emit("clearAll")
     }
 
   }
