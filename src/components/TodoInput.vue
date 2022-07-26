@@ -44,6 +44,8 @@ export default {
     height: 50px;
     line-height: 50px;
     border-radius: 5px;
+    width: 1200px;
+    margin: 0 auto;
   }
   .inputBox input{
     border-style: none;
