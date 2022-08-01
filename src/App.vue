@@ -67,13 +67,13 @@ export default {
 
   components: {
     // /*컴포넌트 태그명 : 컴포넌트 내용*/
-    'TodoFooter': TodoFooter,
+    TodoFooter,
     // eslint-disable-next-line
-    'TodoHeader': TodoHeader,
+    TodoHeader,
     // eslint-disable-next-line
-    'TodoInput': TodoInput,
+    TodoInput,
     // eslint-disable-next-line
-    'TodoList': TodoList,
+    TodoList,
     // eslint-disable-next-line
 
   }

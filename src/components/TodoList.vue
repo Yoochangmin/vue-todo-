@@ -1,6 +1,6 @@
 <template>
 <div class="listContainer">
-  <ul>
+  <transition-group name="list" tag="ul">
     <!-- 텍스트값만 중복되지 않으면 v-bind:key가 유일하기에 속도 가속화   -->
     <!-- index를 넣으면 해당 리스트의 순서를 부여   -->
     <li v-for= "(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
@@ -13,7 +13,7 @@
       <font-awesome-icon icon="fa-solid fa-trash-can" />
       </span>
     </li>
-  </ul>
+  </transition-group>
 </div>
 </template>
 
@@ -81,5 +81,14 @@ li{
 .textCompleted{
   color: red;
   text-decoration-line: line-through;
+}
+
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
