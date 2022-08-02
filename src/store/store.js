@@ -24,5 +24,17 @@ export const store = new Vuex.Store({
   state:{
     headerText: 'Todo it!!',
     todoItems: storage.fetch(),  //todo리스트를 담을 아이템
+  },
+
+  mutations:{
+      // 할일 추가 기능, state와 TodoList.vue에서의 newTodoItem을 인자로 받아옴
+      addOneItem: function (state,todoItem) {
+          //객체 생성 -> 텍스트가 체크 되었는지 확인 하기 위해
+          let obj = {completed: false, item: todoItem} //todoItem == this.newTodoItem
+          //2. 저장 로직
+          localStorage.setItem(todoItem, JSON.stringify(obj));
+          state.todoItems.push(obj)
+      },
+
   }
 });

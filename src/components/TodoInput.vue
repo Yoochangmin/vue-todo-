@@ -30,8 +30,8 @@ export default {
   methods:{
     addTodo:function (){
       if(this.newTodoItem !==''){
-        //상위 컴포넌트로 값 전달 $emit('이벤트 이름', 인자1, 인자2, ...)
-        this.$emit('addTodoItem',this.newTodoItem);
+        // this.$emit('addTodoItem',this.newTodoItem);
+        this.$store.commit('addOneItem',this.newTodoItem)  // addOneItem 메소드 실행, this.newTodoItem을 인자로 추가로 보냄
         this.clearInput()  //this 사용시 데이터 안에 있는 속성과 메소드안에 선언한 메소드도 접근 가능 같은 인스턴스를 가리키기에
       }else {
         this.showModal = !this.showModal;

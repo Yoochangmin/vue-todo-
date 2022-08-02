@@ -21,7 +21,6 @@
 export default {
   name: 'TodoList',
   //App.vue에 있는 todoItems의 데이터를 받아옴
-  props:['propsdata'],
 
   methods:{
     //list 할일 제거
