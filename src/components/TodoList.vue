@@ -3,7 +3,7 @@
   <transition-group name="list" tag="ul">
     <!-- 텍스트값만 중복되지 않으면 v-bind:key가 유일하기에 속도 가속화   -->
     <!-- index를 넣으면 해당 리스트의 순서를 부여   -->
-    <li v-for= "(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
+    <li v-for= "(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
         <font-awesome-icon  icon="fa-solid fa-check" class="checkBtn"
         v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem,index)"/>
     <!-- v-bind:class => 기존의 html속성에다가 동적인 값을 부여 true이면 속성 적용 false이면 속성적용 x    -->
