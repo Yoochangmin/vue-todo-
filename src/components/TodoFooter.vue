@@ -14,7 +14,8 @@ export default {
   methods:{
     //list 목록 삭제
     clearTodo: function () {
-      this.$emit("clearAll")
+      // this.$emit("clearAll")
+      this.$store.commit('clearAllItem')
     }
 
   }

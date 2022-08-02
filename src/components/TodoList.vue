@@ -27,13 +27,14 @@ export default {
     removeTodo:function (todoItem, index){
       // "removeItem"이라는 이벤트가 발생하면
       // todoItem과 index 데이터를 상위 컴포넌트 App.vue로 보냄
-      this.$emit('removeItem',todoItem,index)
+      // this.$emit('removeItem',todoItem,index)
+      this.$store.commit('removeOneItem',{todoItem,index})
 
     },
     // list 할일 완료 기능
-    toggleComplete: function (todoItem, index){
-      console.log(todoItem, index)
-      this.$emit('toggleItem', todoItem)
+    toggleComplete: function (todoItem,index){
+      // this.$emit('toggleItem', todoItem)
+      this.$store.commit('toggleOneItem',{todoItem,index})
 
     }
   },

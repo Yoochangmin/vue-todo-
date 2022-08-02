@@ -35,6 +35,24 @@ export const store = new Vuex.Store({
           localStorage.setItem(todoItem, JSON.stringify(obj));
           state.todoItems.push(obj)
       },
-
+        //할일 삭제 기능
+      removeOneItem: function (state,payload){
+          //todoItem.item 특정 키값 삭제
+          localStorage.removeItem(payload.todoItem.item);
+          state.todoItems.splice(payload.index,1);
+      },
+      // 할일 완료 체크 기능
+      toggleOneItem: function (state,payload){
+          // todoItem.completed = !todoItem.completed
+          state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
+          //removeItem 하는 이유 : 설정값을 바꾸고 다시 저장할려면 지웟다가 다시 추가해야함. => 로컬 스토리지의 데이터 갱신
+          localStorage.removeItem(payload.todoItem.item);
+          localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
+      },
+      //할일 전부 삭제 기능
+      clearAllItem:function (state){
+          localStorage.clear()
+          state.todoItems = [];
+      }
   }
 });
